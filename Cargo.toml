@@ -4,7 +4,7 @@ version = "0.1.4"
 edition = "2024"
 authors = ["nop <noplab90@gmail.com>"]
 license = "Apache-2.0"
-repository = "https://github.com/MechanicalGirlDev/bno086-driver"
+repository = "https://github.com/MechanicalGirlDev/bno086-imu-driver"
 description = "Serial IMU source for the BNO086_ROS2Board postcard+COBS protocol"
 
 [lib]

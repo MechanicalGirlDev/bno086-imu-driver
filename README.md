@@ -1,4 +1,4 @@
-# BNO086 Serial Driver
+# BNO086 IMU Driver
 
 Standalone Rust serial transport and bring-up utility for the **BNO086_ROS2Board** custom board (BNO086 + STM32F042C6). This is board-specific software, not a universal BNO086 driver.
 
