@@ -29,6 +29,21 @@ bno086 --help
 bno086 --port COM7
 ```
 
+## Reiny 0.7 integration
+
+`bno086-serial` remains a framework-independent transport. The `bno086` CLI is
+a standalone bring-up tool, not a managed Reiny module.
+
+Put the Reiny SDK and `main.yaml` in the consuming adapter. Declare its compiled
+IMU output type, open the named `Cloudy::output` and establish the adapter's
+startup policy before calling `Cloudy::ready()`. Keep board-to-body conversion,
+sample age and connection-generation handling in that adapter. The publisher
+namespace comes from Reiny's deployment/module path, not from a serial port name.
+
+The reader thread currently has no cancellation API and ends with its process.
+Dropping `Bno086Handle` does not stop it. A host adapter must not advertise a
+cooperative reader-stop guarantee that this transport does not provide.
+
 ## Wire compatibility
 
 The host/device protocol definitions are vendored from `MechanicalGirlDev/BNO086_ROS2Board`, revision `d940d6a62f7675e1b42c772add39709df04915e9` (2026-07-22). Protocol enum variant order and structure field order are wire-significant for postcard and must be preserved. On connection, the driver requests device information and warns when the reported protocol version differs from `PROTOCOL_VERSION`.
