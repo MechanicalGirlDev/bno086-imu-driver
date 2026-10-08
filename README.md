@@ -29,7 +29,7 @@ bno086 --help
 bno086 --port COM7
 ```
 
-## Reiny 0.7 integration
+## Reiny 0.8 integration
 
 `bno086-serial` remains a framework-independent transport. The `bno086` CLI is
 a standalone bring-up tool, not a managed Reiny module.
@@ -39,6 +39,12 @@ IMU output type, open the named `Cloudy::output` and establish the adapter's
 startup policy before calling `Cloudy::ready()`. Keep board-to-body conversion,
 sample age and connection-generation handling in that adapter. The publisher
 namespace comes from Reiny's deployment/module path, not from a serial port name.
+
+Use published `reiny = "0.8.0"` and `reiny-build = "0.8.0"` in that adapter,
+with `version: 2` in its runtime definition and schema catalog. Its own
+`main.yaml` declares the executable, build and output policies, including
+`qos` and `retention`. Callers reuse it through `source`; they do not copy
+its outputs or redefine its policies.
 
 The reader thread currently has no cancellation API and ends with its process.
 Dropping `Bno086Handle` does not stop it. A host adapter must not advertise a
